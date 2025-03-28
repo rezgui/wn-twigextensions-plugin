@@ -1,4 +1,4 @@
-<?php namespace VojtaSvoboda\TwigExtensions\Tests;
+<?php namespace Rezgui\TwigExtensions\Tests;
 
 use App;
 use Carbon\Carbon;

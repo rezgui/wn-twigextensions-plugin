@@ -1,13 +1,13 @@
 {
-  "name": "vojtasvoboda/twigextensions-plugin",
-  "type": "october-plugin",
+  "name": "rezgui/twigextensions-plugin",
+  "type": "winter-plugin",
   "keywords": ["twig", "extensions"],
-  "description": "Register more Twig filters for your OctoberCMS templates",
+  "description": "Register more Twig filters for your WinterCMS templates",
   "license": "MIT",
   "authors": [
     {
-      "name": "Vojta Svoboda",
-      "email": "vojtasvoboda.cz@gmail.com"
+      "name": "Yacine REZGUI",
+      "email": "yacine.rezgui@rsolution.dz"
     }
   ],
   "require": {

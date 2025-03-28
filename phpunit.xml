@@ -10,7 +10,7 @@
          stopOnFailure="false"
     >
     <testsuites>
-        <testsuite name="VojtaSvoboda.TwigExtensions Test Suite">
+        <testsuite name="Rezgui.TwigExtensions Test Suite">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>

@@ -1,4 +1,6 @@
-<?php namespace VojtaSvoboda\TwigExtensions;
+<?php
+
+namespace Rezgui\TwigExtensions;
 
 use Carbon\Carbon;
 use Event;
@@ -20,11 +22,11 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name' => 'Twig Extensions',
-            'description' => 'Add more Twig filters to your templates.',
-            'author' => 'Vojta Svoboda',
+            'name' => 'Twig Extensions for WinterCMS',
+            'description' => 'Add more Twig filters to your templates. forked from https://github.com/vojtasvoboda/oc-twigextensions-plugin',
+            'author' => 'Yacine REZGUI',
             'icon' => 'icon-plus',
-            'homepage' => 'https://github.com/vojtasvoboda/oc-twigextensions-plugin',
+            'homepage' => 'https://github.com/rezgui/wn-twigextensions-plugin',
         ];
     }
 
@@ -32,7 +34,7 @@ class Plugin extends PluginBase
     {
         // add Intl extension if php_intl.dll installed
         if (class_exists('IntlDateFormatter')) {
-            Event::listen('system.extendTwig', function(Environment $twig) {
+            Event::listen('system.extendTwig', function (Environment $twig) {
                 $twig->addExtension(new IntlExtension());
             });
         }
@@ -91,27 +93,27 @@ class Plugin extends PluginBase
     private function getPhpFunctions(): array
     {
         return [
-            'strftime' => function($time, $format = '%d.%m.%Y %H:%M:%S') {
+            'strftime' => function ($time, $format = '%d.%m.%Y %H:%M:%S') {
                 $timeObj = new Carbon($time);
                 return strftime($format, $timeObj->getTimestamp());
             },
-            'ltrim' => function($string, $charlist = " \t\n\r\0\x0B") {
+            'ltrim' => function ($string, $charlist = " \t\n\r\0\x0B") {
                 return ltrim($string, $charlist);
             },
-            'rtrim' => function($string, $charlist = " \t\n\r\0\x0B") {
+            'rtrim' => function ($string, $charlist = " \t\n\r\0\x0B") {
                 return rtrim($string, $charlist);
             },
-            'strip_tags' => function($string, $allow = '') {
+            'strip_tags' => function ($string, $allow = '') {
                 return strip_tags($string, $allow);
             },
-            'var_dump' => function($expression) {
+            'var_dump' => function ($expression) {
                 ob_start();
                 var_dump($expression);
                 $result = ob_get_clean();
 
                 return $result;
             },
-            'wordwrap' => function(string $string, int $width = 75, string $break = "\n", bool $cut_long_words = false) {
+            'wordwrap' => function (string $string, int $width = 75, string $break = "\n", bool $cut_long_words = false) {
                 return wordwrap($string, $width, $break, $cut_long_words);
             }
         ];
@@ -123,7 +125,7 @@ class Plugin extends PluginBase
     private function getSessionFunction(): array
     {
         return [
-            'session' => function($key = null) {
+            'session' => function ($key = null) {
                 return session($key);
             },
         ];
@@ -135,7 +137,7 @@ class Plugin extends PluginBase
     private function getTransFunction(): array
     {
         return [
-            'trans' => function($key = null, $parameters = []) {
+            'trans' => function ($key = null, $parameters = []) {
                 return trans($key, $parameters);
             },
         ];
@@ -147,7 +149,7 @@ class Plugin extends PluginBase
     private function getVarDumpFunction(): array
     {
         return [
-            'var_dump' => function($expression) {
+            'var_dump' => function ($expression) {
                 ob_start();
                 var_dump($expression);
                 $result = ob_get_clean();
@@ -169,15 +171,15 @@ class Plugin extends PluginBase
     private function getFileRevision()
     {
         return [
-            'revision' => function($filename, $format = null) {
+            'revision' => function ($filename, $format = null) {
                 // Remove http/web address from the file name if there is one to load it locally
                 $prefix = url('/');
-                $filename_ = trim(preg_replace('/^'.preg_quote($prefix, '/').'/', '', $filename), '/');
+                $filename_ = trim(preg_replace('/^' . preg_quote($prefix, '/') . '/', '', $filename), '/');
                 if (file_exists($filename_)) {
                     $timestamp = filemtime($filename_);
                     $prepend = ($format) ? date($format, $timestamp) : $timestamp;
 
-                    return $filename.'?'.$prepend;
+                    return $filename . '?' . $prepend;
                 }
 
                 return $filename;
