@@ -1,25 +1,16 @@
 # Twig extensions
 
-[![Build Status](https://travis-ci.org/vojtasvoboda/oc-twigextensions-plugin.svg?branch=master)](https://travis-ci.org/vojtasvoboda/oc-twigextensions-plugin)
-[![Codacy](https://img.shields.io/codacy/c6b23b6527bd407092763cace324ef4a.svg)](https://www.codacy.com/app/vojtasvoboda/oc-twigextensions-plugin)
-[![Scrutinizer Coverage](https://img.shields.io/scrutinizer/g/vojtasvoboda/oc-twigextensions-plugin.svg)](https://scrutinizer-ci.com/g/vojtasvoboda/oc-twigextensions-plugin/?branch=master)
+![GitHub forks](https://img.shields.io/github/forks/vojtasvoboda/oc-twigextensions-plugin?style=flat)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/vojtasvoboda/oc-twigextensions-plugin/blob/master/LICENSE)
 
-Twig extensions plugin for OctoberCMS adds new filter and functions to your templates. No other plugin dependencies. Tested with the latest stable OctoberCMS 3.1.18 on PHP 8.0.
-
-## Versions
-
-There are two versions of this plugin - 1.x and 2.x. For older October 1.0.x, 1.1.x or 2.x.x use special [branch 1.x](https://github.com/vojtasvoboda/oc-twigextensions-plugin/tree/1.x). For October 3.1+ use master branch. 
-For old Laravel 5.4 October's versions use special branch `laravel54`.
-
-For migrating between plugin's version 1 and version 2 you can use special [UPGRADE.md](UPGRADE.md) guide.
+Twig extensions forked from [vojtasvoboda/oc-twigextensions-plugin](https://github.com/vojtasvoboda/oc-twigextensions-plugin), is a plugin for WinterCMS adds new filter and functions to your templates. No other plugin dependencies.
 
 ## Installation
 
 Install plugin from CMS backend or by Composer:
 
 ```
-composer require vojtasvoboda/oc-twigextensions-plugin
+composer require rezgui/wn-twigextensions-plugin
 ```
 
 Than you can use newly added filters/functions at your templates:
@@ -36,7 +27,7 @@ Than you can use newly added filters/functions at your templates:
 
 ## Available functions
 
-[session](https://laravel.com/docs/5.0/session#session-usage), [trans](https://octobercms.com/docs/plugin/localization), [var_dump](http://php.net/manual/en/function.var-dump.php), [template\_from\_string](https://twig.symfony.com/doc/3.x/functions/template_from_string.html), [country_timezones](https://twig.symfony.com/doc/3.x/functions/country_timezones.html)
+[session](https://laravel.com/docs/5.0/session#session-usage), [trans](https://wintercms.com/docs/plugin/localization), [var_dump](http://php.net/manual/en/function.var-dump.php), [template\_from\_string](https://twig.symfony.com/doc/3.x/functions/template_from_string.html), [country_timezones](https://twig.symfony.com/doc/3.x/functions/country_timezones.html)
 
 ### session
 
@@ -58,7 +49,7 @@ Function moves the functionality of the Laravel `trans()` helper function to Twi
 {{ trans('acme.blog::lang.app.name') }}
 ```
 The example would output a value stored in a localization file of an imaginary blog plugin.
-See [more about localization in October CMS here](https://octobercms.com/docs/plugin/localization).
+See [more about localization in Winter CMS here](https://wintercms.com/docs/plugin/localization).
 
 You can also use trans filter: `{{ 'acme.blog::lang.app.name'|trans }}`.
 
@@ -515,38 +506,6 @@ The format_date filter formats a date. It behaves in the exact same way as the f
 
 The format_time filter formats a time. It behaves in the exact same way as the format_datetime filter, but without the date.
 
-## Removed functions
-
-Functions used in plugin's version 1.x for October 1.0.x, 1.1.x, 2.0.x and removed from this version:
-
-- config() - it's native function since October 3.1.17
-- env() - it's native function since October 3.1.17
-
-## Removed filters
-
-Filters used in plugin's version 1.x for October 1.0.x, 1.1.x, 2.0.x and removed from this version:
-
-- uppercase - use str_upper or just upper
-- lowercase - use str_lower or just lower
-- ucfirst - use str_ucfirst
-- lcfirst - use str_lcfirst
-- str_repeat - it's native filter now
-- plural - use str_plural
-- truncate - use str_limit
-- strpad - use str_pad_both
-- str_replace - it's native filter now
-- strip_tags - use html_strip
-- leftpad - use str_pad_left
-- rightpad - use str_pad_right
-- rtl - use str_reverse
-- shuffle - use `collect(songs).shuffle()`
-- time_diff - use `carbon(post.published_at).diffForHumans()`
-- localizeddate - use format_date
-- localizednumber - use format_number
-- localizedcurrency - use format_currency
-- mailto - use html_mailto
-- var_dump - use dump function
-- sortbyfield - use `collect(data).sortBy('age')` or `collect(data).sortByDesc('age')`
 
 For more info see [UPGRADE.md](UPGRADE.md) guide.
 
